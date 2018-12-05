@@ -16,3 +16,7 @@ tags: 平面设计 电子科技大学
 
 ![poster]({{site.baseurl}}/assets/images/post_images/2018-12-5/poster.jpg)
 
+## 后记
+
+海报最后没有采用，可能是因为内容不够丰富吧。不过我又学到许多PS的骚操作，也算是值啦！
+
