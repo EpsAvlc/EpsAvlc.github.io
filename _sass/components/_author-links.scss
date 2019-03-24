@@ -14,8 +14,8 @@
       .twitter-button {
         @include clickable($text-color-1, $twitter-color);
       }
-      .googlepluse-button {
-        @include clickable($text-color-1, $google-plus-color);
+      .leetcode-button {
+        @include clickable($text-color-1, $leetcode-color);
       }
       .github-button {
         @include clickable($text-color-1, $github-color);
