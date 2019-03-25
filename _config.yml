@@ -36,7 +36,7 @@ author:
   type      : person # "person" (default), "organization"
   name      : EpsAvlc
   url       :
-  avatar    : # path or url of avatar image
+  bilibili  : 562096 # path or url of bilibil
   bio       : Common.
   email     : 
   facebook  : # "user_name" the last part of your profile url, e.g. https://www.facebook.com/user_name

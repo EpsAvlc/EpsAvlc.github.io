@@ -17,6 +17,9 @@
       .leetcode-button {
         @include clickable($text-color-1, $leetcode-color);
       }
+      .bilibili-button {
+        @include clickable($text-color-1, $bilibili-color);
+      }
       .github-button {
         @include clickable($text-color-1, $github-color);
       }

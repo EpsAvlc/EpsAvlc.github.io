@@ -33,6 +33,14 @@
       </li>
     {%- endif -%}
 
+    {%- if _author.bilibili -%}
+      <li title="{{ __return | replace: '[NAME]', 'Bilibili' }}">
+        <a class="button button--circle bilibili-button" itemprop="sameAs" href="https://space.bilibili.com/{{ _author.bilibili }}" target="_blank">
+          <div class="icon">{%- include svg/icon/social/bilibili.svg -%}</div>
+        </a>
+      </li>
+    {%- endif -%}
+
     {%- if _author.twitter -%}
       <li title="{{ __return | replace: '[NAME]', 'Twitter' }}">
         <a class="button button--circle twitter-button" itemprop="sameAs" href="https://twitter.com/{{ _author.twitter }}" target="_blank">
