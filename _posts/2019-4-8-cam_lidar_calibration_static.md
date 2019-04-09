@@ -22,7 +22,7 @@ tags: computer-vision
 
 ![setup](/assets/images/post_images/cam_lidar_calib_static/setup.png)
 
-如图，左边是zed双目相机（当单目用），右边是VLP-16。两块硬纸板上装的是[Aruco](https://github.com/pal-robotics/aruco_ros)，类似于April tag，单目相机可以很容易通过PnP获得它自身坐标系到相机坐标系的R|t。
+如图，左边是zed双目相机（当单目用），右边是VLP-16。两块硬纸板上装的是[Aruco](https://github.com/pal-robotics/aruco_ros)，类似于April tag，单目相机可以很容易通过PnP获得它自身坐标系到相机坐标系的R丨t。
 
 ### 参数
 
@@ -37,7 +37,7 @@ tags: computer-vision
 
 1. 根据Aruco这个marker确定相机到Aruco坐标系的转换（原理为PnP），然后根据上图那些s1, s2, b1, b2, e等等量出来的距离，确定硬纸板四个角点在相机坐标系的三维坐标。
 2. 在激光雷达点云中，手点，框出硬纸板的四条边，然后用直线拟合这四条边，每两条边的交点为硬纸板的定点。
-3. 由1,2得到的四组对应3d点，由于有两个硬纸板，所以有八组对应点，随后用PnP求解两坐标系之间的R|t。
+3. 由1,2得到的四组对应3d点，由于有两个硬纸板，所以有八组对应点，随后用PnP求解两坐标系之间的R丨t。
 
 ## 其他
 
