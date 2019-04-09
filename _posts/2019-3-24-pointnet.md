@@ -1,6 +1,6 @@
 ---
 title: "Pointnet 论文精读"
-tags: compute-vision deep-learning
+tags: computer-vision deep-learning
 ---
 
 ## 背景

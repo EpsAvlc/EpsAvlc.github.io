@@ -1,6 +1,6 @@
 ---
 title: "贝叶斯估计、最大似然估计、最大后验概率与Baysian Matting"
-tags: compute-vision
+tags: computer-vision
 ---
 
 ## 背景

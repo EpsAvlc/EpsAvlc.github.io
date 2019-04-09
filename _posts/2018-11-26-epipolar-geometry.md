@@ -1,6 +1,6 @@
 ---
 title: "有关对极几何，对极约束的思考"
-tags: compute-vision
+tags: computer-vision
 ---
 
 ## 问题提出
