@@ -26,11 +26,11 @@ tags: computer-vision
 
 3. 外参的获得。基本模型是手眼标定（hand-eye calibration）的模型。设相机的运动为$R^i_{cam}, \overline{t}^i_{cam}$。因为相机得到的t是没有尺度的，所以有个上划线表示估计值。设LiDAR的运动为 $R^i_{lid}, \overline{t}^i_{lid}$，则这两个运动满足以下关系：
    $$
-   \boldsymbol{R}_{c a m}^{i} \boldsymbol{R}=\boldsymbol{R} \boldsymbol{R}_{l i d}^{i}  \tag{1}
+   \boldsymbol{R}_{c a m}^{i} \boldsymbol{R}=\boldsymbol{R} \boldsymbol{R}_{l i d}^{i}  
    $$
 
    $$
-   \boldsymbol{R}_{c a m}^{i} \boldsymbol{t}+s^{i} \overline{\boldsymbol{t}}_{c a m}^{i}=\boldsymbol{R} \boldsymbol{t}_{l i d}^{i}+\boldsymbol{t} \tag{2}
+   \boldsymbol{R}_{c a m}^{i} \boldsymbol{t}+s^{i} \overline{\boldsymbol{t}}_{c a m}^{i}=\boldsymbol{R} \boldsymbol{t}_{l i d}^{i}+\boldsymbol{t} 
    $$
 
    其中$s^i$是一个缩放因子，将求得的相机的$\overline{t}^i_{cam}$缩放到真实值。而$R,t$是相机与激光雷达的外参。这两个式子的推导见下文的推导部分。
@@ -38,13 +38,13 @@ tags: computer-vision
    那么初始的$R$可以由式(1)推得：
    
    $$
-   \boldsymbol{k}_{c a m}^{i}=\boldsymbol{R} \boldsymbol{k}_{l i d}^{i} \tag{3}
+   \boldsymbol{k}_{c a m}^{i}=\boldsymbol{R} \boldsymbol{k}_{l i d}^{i} 
    $$
    
    其中$k_{cam}^i$ 与$k_{lid}^i$为旋转矩阵$R^i_{cam}, R^i_{lid}$的旋转轴，可以通过将旋转矩阵奇异值分解，求其特征值为1的特征向量而得。那么$R$的初始解可以通过求解线性方程（3）得到，$t$则通过求解式(2)得出。解得$R$的初始解后，还进行了对$R$的优化。通过对下式的非线性优化得到较为好的$R$。
    
    $$
-   \boldsymbol{R}=\underset{\boldsymbol{R}}{\arg \min } \sum_{i}\left|\mathbf{R}_{c a m}^{i} \mathbf{R}-\mathbf{R} \mathbf{R}_{l i d}^{i}\right|  \tag{4}
+   \boldsymbol{R}=\underset{\boldsymbol{R}}{\arg \min } \sum_{i}\left|\mathbf{R}_{c a m}^{i} \mathbf{R}-\mathbf{R} \mathbf{R}_{l i d}^{i}\right| 
    $$
 
 #### 迭代优化相机的运动估计和传感器标定
