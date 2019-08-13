@@ -9,7 +9,7 @@ key: page-about
 ---
 
 # Ming Cao
-<img height="216" width="288" align="right" src="{{site.baseurl}}/assets/images/about/me.jpg"/>
+
 M.Sc. Student, NRSL group
 
 School of Mechanical Engineering and Automation
