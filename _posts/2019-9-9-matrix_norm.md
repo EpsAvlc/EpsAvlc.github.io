@@ -20,7 +20,11 @@ Frobenius Matrix Norm简称F范数，就是课堂上讲的，其定义为：
 $$
 \|\mathbf{A}\|_{F}^{2}=\sum_{i, j}\left|a_{i j}\right|^{2}=\sum_{i}\left\|\mathbf{A}_{i *}\right\|_{2}^{2}=\sum_{j}\left\|\mathbf{A}_{* j}\right\|_{2}^{2}=\operatorname{trace}\left(\mathbf{A}^{*} \mathbf{A}\right)
 $$
-然而由F范数的定义是推不出来$\|\mathbf{A}\|_{2}=\sqrt{\lambda_{\max }}$的，它是由Induced Matrix Norms（诱导范数）推导来的。
+然而由F范数的定义是推不出来
+$$
+\|\mathbf{A}\|_{2}=\sqrt{\lambda_{\max }}
+$$
+的，它是由Induced Matrix Norms（诱导范数）推导来的。
 
 ### Induced Matrix Norms
 
@@ -28,7 +32,6 @@ $$
 $$
 \|\mathbf{A}\|=\max _{\|\mathbf{x}\|=1}\|\mathbf{A} \mathbf{x}\| \quad \text { for } \mathbf{A} \in \mathcal{C}^{m \times n}, \quad \mathbf{x} \in \mathcal{C}^{n \times 1}
 $$
-[][https://en.wikipedia.org/wiki/Matrix_norm#cite_note-1]
 
 用图来说明诱导范数的几何意义。![](/assets/images/post_images/matrix_norm/induced_norm.png)
 
@@ -44,7 +47,11 @@ $$
 
 ## 推导公式
 
-下证$\|\mathbf{A}\|_{2}=\sqrt{\lambda_{\max }}$。因为[^2]上介绍矩阵范数时还没讲到矩阵的特征值，因此推导的有点绕，此处证明采用知乎白如冰大神的推导方式[^3]：
+下证
+$$
+\|\mathbf{A}\|_{2}=\sqrt{\lambda_{\max }}
+$$
+因为[^2]上介绍矩阵范数时还没讲到矩阵的特征值，因此推导的有点绕，此处证明采用知乎白如冰大神的推导方式[^3]：
 
 因为
 $$
