@@ -61,4 +61,4 @@ tags: computer-vision
 [^1]: *Single View Point Omnidirectional Camera Calibration from Planar Grids*，ICRA 2007
 [^2]: https://github.com/hengli/camodocal
 [^3]: *Dual-Fisheye Omnidirectional Stereo*, IROS 2017
-[^4]: https://git.nrs-lab.com/EpsAvlc/fisheye_to_pinhole
+[^4]: https://github.com/EpsAvlc/EpsAvlc_toys/tree/master/fisheye_to_pinhole
