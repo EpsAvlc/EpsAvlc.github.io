@@ -5,6 +5,10 @@
   },
   "files.associations": {
     "*.html": "jekyll"
-  }
+  },
+  "cSpell.ignoreWords": [
+    "diagram",
+    "segmatch"
+  ]
 }
 
