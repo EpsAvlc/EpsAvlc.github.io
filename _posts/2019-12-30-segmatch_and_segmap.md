@@ -28,7 +28,7 @@ global feature是指对于输入的整个点云，分析点云的一些特征并
 
 SegMatch的流程图如下所示。
 
-![segmatch_diagram](../assets/images/post_images/19-12-30-seg/segmatch_diagram.png)
+![segmatch_diagram](/assets/images/post_images/19-12-30-seg/segmatch_diagram.png)
 
 我将详细介绍每个部分的作用。
 
