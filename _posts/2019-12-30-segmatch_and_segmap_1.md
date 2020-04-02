@@ -1,6 +1,7 @@
 ---
 title: "激光雷达SLAM重定位：SegMatch与SegＭap（一）"
 tags: SLAM
+comment: true
 ---
 
 挖的坑要及时填呀。
