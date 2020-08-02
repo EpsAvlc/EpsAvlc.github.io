@@ -10,7 +10,7 @@ key: page-about
 
 # Ming Cao
 
-M.Sc. Student, NRSL group
+Master candidate, NRSL group
 
 School of Mechanical Engineering and Automation
 
@@ -24,7 +24,7 @@ I am a student of School of Mechanical Engineering and Automation in Harbin Inst
 
 ## Biography
 
-I receive my B.Sc. degree in Electrical Engineering in School of Mechanical and Electrical Engineering from [University of Electronic Science and Technology of China](https://www.uestc.edu.cn/) in June 2019.
+I received my B.Sc. degree in Electrical Engineering in School of Mechanical and Electrical Engineering from [University of Electronic Science and Technology of China](https://www.uestc.edu.cn/) in June 2019.
 
 
 ## Research Interest
