@@ -31,6 +31,7 @@ I received my B.Sc. degree in Electrical Engineering in School of Mechanical and
 
 My research interests include: **Mutiple sensor fusion** and **SLAM**. 
 
-
+## Publication
+1. Ming Cao, Pengpeng Su, Haoyao Chen*, Shiyu Tang, and Yunhui Liu, 3D Dense Rangefinder Sensor With A Low Cost Scanning Mechanism, IEEE Transactions on Instrumentation & Measurement, accepted, 2020.
 
 
