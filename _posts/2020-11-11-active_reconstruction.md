@@ -16,7 +16,7 @@ tags: SLAM
 
 其中，第一篇论文是有关双目相机的视觉重建的。第二篇论文则是用VLP-16激光雷达结合ETH的ANYmal机器人完成的一个较大范围的三维重建。
 
-![anymal](../pics/ig_active_slam/anymal-photo1-full.jpg)
+![anymal](/pics/ig_active_slam/anymal-photo1-full.jpg)
 
 由于我主要也在做的是基于激光的三维重建，因此我主要讲讲第二篇文章。
 
@@ -30,9 +30,9 @@ tags: SLAM
 
 对于某个候选位置$c$，用以下函数来评估该位置的得分。
 
-$
+$$
 \mathcal{U}_{c}=\mathcal{G}_{c} \times\left(1-\mathcal{P}_{c}\right) \times\left(1-\mathcal{T}_{c}\right)
-$
+$$
 
 其中:
 
@@ -40,7 +40,8 @@ $
 - $\mathcal{P}_c$为在这个位置的位置损失。如果该位置已被访问过，或者特别接近物体，这个值将会比较大。
 - $\mathcal{T}_c$为路程损失，当机器人当前位置到该位置的距离比较远的时候，该值比较大。
 
-###　信息增益的定义
+
+### 信息增益的定义
 
 第二篇文章的信息增益实际上是直接用第一篇文章的信息增益的。主要分为两个信息增益。
 
@@ -68,7 +69,7 @@ $$
 
 根据这个定义，举例说明：
 
-![](../pics/ig_active_slam/OA.png)
+![](/pics/ig_active_slam/OA.png)
 
 上图为根据OA 信息增益算出来的voxel的占据概率的信息增益图。其中，黑色表示该voxel已被占据，灰色表示该voxel未知，绿色表示该voxel为free。白色为待选的传感器未知。此外，边界区域的voxel被用白色斜线标出，信息增益的大小则用蓝色三角形的颜色深浅来表示。
 
