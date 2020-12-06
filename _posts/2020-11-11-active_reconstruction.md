@@ -109,3 +109,7 @@ $$
 ### 收敛条件
 
 当next best view的评价函数的分数低于一个用户所选的阈值，则收敛。
+
+### 代码笔记
+
+![](/pics/ig_active_slam/IG_Active_Mapping.png)
