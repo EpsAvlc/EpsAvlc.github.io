@@ -40,5 +40,4 @@ $$
 引用论文：《Gaussian Process Optimization in the Bandit Setting:No Regret and Experimental Design》
 
 
-- Multi-armed bandit problem
-  
+- Multi-armed bandit problem (多臂老虎机问题)
