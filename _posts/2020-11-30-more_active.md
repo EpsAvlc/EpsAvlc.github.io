@@ -41,3 +41,18 @@ $$
 
 
 - Multi-armed bandit problem (多臂老虎机问题)
+
+实际上是用高斯过程回归，取待测试的位置的一个子集来做高斯过程训练，然后用其余的位置来测试，得到剩余的位置的信息增益与协方差，然后评价函数为
+
+$$
+x_{t}=\underset{x \in \mathscr{G}_{\text {action}}}{\operatorname{argmax}} \mu(x)+\beta \sigma(x)
+$$
+
+根据这个公式来算最佳位置。
+
+#### 代码阅读
+
+其代码在github: [turtlebot_exploration_3d](https://github.com/RobustFieldAutonomyLab/turtlebot_exploration_3d)
+
+我的阅读如下：
+![](/pics/more_active/turtlebot_exploration_3d.png)
