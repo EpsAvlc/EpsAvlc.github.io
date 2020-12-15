@@ -24,14 +24,12 @@ $$
 
 对于某个特定的C-space中的一点$x_i$而言，其所能得到的信息增益为
 $$
-I\left(m, x_{i}\right)=H(m)-H\left(m \mid x_{i}\right)
-$$
+I\left(m, x_{i}\right)=H(m)-H\left(m \mid x_{i}\right)$$
 
-其中$H(m)$为当前地图的信息增益，$H(m|x_i)$为给定在$x_i$处的观测后所期望的地图的信息增益。因此，该问题则变为找到C-space中的某一点$x^*$，使得信息增益最大
+其中$H(m)$为当前地图的信息增益，$H(m\|x_i)$为给定在$x_i$处的观测后所期望的地图的信息增益。因此，该问题则变为找到C-space中的某一点$x^*$，使得信息增益最大
 
 $$
-x^{*}=\underset{x_{i} \in \mathscr{G}_{\text {action}}}{\operatorname{argmax}} I\left(m, x_{i}\right)
-$$
+x^{*}=\underset{x_{i} \in \mathscr{G}_{\text {action}}}{\operatorname{argmax}} I\left(m, x_{i}\right)$$
 
 其中$\mathscr{G}_{\text{action}}$是的C-space的子集，是下一步可能去的地方。
 
@@ -174,3 +172,70 @@ $$
 \boldsymbol{C}(f)=\boldsymbol{C}_{p}(f)-\lambda \sqrt{\boldsymbol{I}(f)}
 $$
 其中$C_p(f)$为当前栅格m到frontier栅格f的距离。$I_t^i$是frontier 聚类$F_t^i$的信息增益。
+
+## 12-15
+- 标题：Fast Frontier-based Information-driven Autonomous Exploration with an MAV
+- 作者单位：ETHZ && 伦敦帝国学院(Imperial College London)
+- 会议: ICRA 2020
+
+### Frontier-based Information-driven Exploration Algorithm
+
+在每一次planning iteration中执行以下步骤：
+1. 从frontier voxels中生成预先指定数量的candidate goal.
+2. 规划当前位置到候选位置的无碰触的路径
+3. 给每个candidate postion关联一个yaw角从而创造出一个candidate pose，再用utility function来评估信息增益
+4. utility score最高的位置被选为下一次的目标。
+
+#### MAV Model
+
+无人机状态量为$\mathtt{x} =[x, y, z,\psi]$，其中$\psi$为yaw角。并假设无人机有一个安全的碰撞半径$R\in \mathbb{R}^+$。
+
+#### Map representation
+本文使用了
+**Supereight**: 一个框架，集成了octomap 以及使用octomap的快速SLAM方案。
+该框架的论文为：[Efficient Octree-Based Volumetric SLAM Supporting Signed-Distance and Occupancy Mapping](https://spiral.imperial.ac.uk/bitstream/10044/1/55715/2/EVespaRAL_final.pdf)
+
+**莫顿码(Morton Code)**：一种编码方式，将多维坐标编码成一维数据。
+
+在八叉树的叶子节点处，supereight没有存储单个voxel，而是存储了$8\times 8 \times 8$的voxel块。
+
+该文章对其进行了改进，使得其
+- 能够存储一个栅格是否是边缘的信息
+- 占据概率能够向上传播，使得碰撞检测容易实行。
+
+#### Frontier Detection
+
+每当新的measurement被加入到地图中时，仅对被更新的voxel检测是否是frontier.
+
+frontier voxel的定义：其占据概率小于0.5，且六邻域的voxel的占据概率等于0.5(即未知)。即那些紧邻着未知区域的free voxel。
+
+#### Candidate Position Sampling
+
+每个frontier voxel块里的frontier个数被求出来，并且小于某个数量的frontier 块会被忽略。剩下的块组成集合$F$
+
+由于$F$中的块使用莫顿码来构建空间上的索引，因此对莫顿码进行均匀采样即可得到空间上均匀采样的frontier voxel blocks。对于每个block，随机选取其中的一个frontier voxel的坐标作为候选位置$P_i$，并且当前位置的yaw角也作为候选位置的yaw角（因为不需要多余的旋转）。
+
+#### Path Planning to Candidate Positions
+
+路径规划是用的OMPL里的Informed RRT*。因为边界区域附近有未知区域，因此导航的时候仅导航到候选区域的前面一部分，然后再直线走到未知区域去。
+
+还提到在模型预测控制(receding horizon exploration)里，由于飞行器是边走边预测的，因此会导致在某些狭小的区域会往复运动。
+
+#### Yaw Optimisation and Candidate Pose Evaluation
+
+##### Sparse Raycasting and Yaw Optimisation:
+
+稀疏光线投射的原理我可以看一下，文章为：
+[Safe local exploration for replanning in cluttered unknown environments for microaerial vehicles](https://ieeexplore.ieee.org/abstract/document/8276241/)
+
+所谓的yaw角优化，其实是构造360度的光线投射的信息增益图：
+![](/pics/more_active/12-15-ig_pic.png)
+
+这个图的上面一张为深度图，下面一张为信息增益图。通过滑动窗口的方式选择出最佳的信息增益。
+
+##### Utility Function
+$$
+u\left(\mathbf{x}_{i}, \hat{W}_{i}\right)=\frac{\mathbb{H}\left(\mathbf{x}_{i}\right)}{T\left(\hat{W}_{i}\right)}
+$$
+
+分子为候选位置的信息熵，分母为规划出来的路径，飞行器所需要的飞行时间。
