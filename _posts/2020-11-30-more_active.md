@@ -239,3 +239,12 @@ u\left(\mathbf{x}_{i}, \hat{W}_{i}\right)=\frac{\mathbb{H}\left(\mathbf{x}_{i}\r
 $$
 
 分子为候选位置的信息熵，分母为规划出来的路径，飞行器所需要的飞行时间。
+
+## 12-16
+
+- 标题：Safe Local Exploration for Replanning in Cluttered Unknown Environments for Microaerial Vehicles
+- 作者单位：ETHZ-ASL
+- 期刊：RAL 2018
+
+这一篇是上述提到的稀疏光线投射。
+
