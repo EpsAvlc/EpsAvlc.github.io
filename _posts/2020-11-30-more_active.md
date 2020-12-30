@@ -248,3 +248,155 @@ $$
 
 这一篇是上述提到的稀疏光线投射。
 
+### Local Trajectory Optimization
+
+先介绍几个概念
+- Jerk: 加速度的倒数
+$$
+\vec{\jmath}(t)=\frac{\mathrm{d} \vec{a}(t)}{\mathrm{d} t}=\frac{\mathrm{d}^{2} \vec{v}(t)}{\mathrm{d} t^{2}}=\frac{\mathrm{d}^{3} \vec{r}(t)}{\mathrm{d} t^{3}}
+$$
+- Snap: Jerk的倒数
+$$
+\vec{s}=\frac{d \vec{\jmath}}{d t}=\frac{d^{2} \vec{a}}{d t^{2}}=\frac{d^{3} \vec{v}}{d t^{3}}=\frac{d^{4} \vec{r}}{d t^{4}}
+$$
+
+然后认为局部待规划的轨迹在K维空间中，有S段segment构成，每段segment是时间的N阶倒数，表达式为
+$$
+f_{k}(t)=a_{0}+a_{1} t+a_{2} t^{2}+a_{3} t^{3} \ldots a_{N} t^{N}
+$$
+设这个多项式的系数为
+$$
+\mathbf{p}_{k}=\left[\begin{array}{lll}
+a_{0} & a_{1} & a_{2} & \ldots & a_{N}
+\end{array}\right]^{\top}
+$$
+
+…… 这部分有机会再看，我知道他就是最小化snap以及障碍物的损失以及一个soft cost
+
+### Map Representation and Unknown Space
+
+Voxblox: 从octomap建立的阶段距离符号场(TSDF)
+
+设置未知的Voxel为占据状态。为了之后的导航规划使用。
+
+### Intermediate Goal Selection
+
+对比使用了几个不同的全局规划器:
+1. naive random waypoint selection: 随机选点
+2. optimistic RRT* (unknown = free)
+3. pessimistic RRT* (unknown = occupied)
+4. RRT+nbv
+5. Proposed
+
+这里介绍下Proposed的方法吧。
+
+1. 在free的区域随机选取N个点，这N个点的yaw角由飞机飞到这个位置的真实yaw角决定。
+2. 所谓稀疏的光线投射是指，在传感器模型的投射区域，计数位置的voxel的数量。为了实时运行，可以对frustum进行降采样，并且只检测每个降采样后的栅格的第s个voxel。
+
+## 12-22
+- 标题：Virtual Maps for Autonomous Exploration with Pose SLAM
+- 作者单位：斯蒂文斯理工大学（二作为Lego-LOAM和Lio-SAM的作者Tixiao Shan)
+- 期刊：RAL 2018
+
+经过将近一个星期的阅读，我只能说，噫，好，我读懂了。
+
+### 待选路径的生成
+将当前位置到所有地图边界的直线连接作为初始值，并将这些初始值按照以下方法优化：
+
+首先，该论文构造了了两个costmap: Localization cost map 和 Exploration cost map.
+![](/pics/more_active/12-22-costmap/12-22-costmap.png)
+
+设$d(x_i, x_j)$为两个位置之间的pose，$d_{\text{occupied}(x)}$与$d_{\text{observed}(x)}$为当前的pose到最近的占据的栅格的距离和到最近的观察过的栅格的距离，并且定义$r_{\text{sensor}}$为传感器的最长的测距距离，则可以定义定位损失为
+
+$$
+\lambda_l(x_j) =  1-\exp \left(-a_{l} d_{\text {occupied }} / r_{\text {sensor }}\right)
+$$
+定义探索损失为
+$$
+\lambda_{e}\left(\mathbf{x}_{j}\right)=\exp \left(-a_{e} d_{\text {observed }} / r_{\text {sensor }}\right)
+$$
+这就是上述两幅图的来源。
+
+在当前时刻T,希望找到由N个pose组成的路径，使得下面的损失函数最小
+$$
+\sum_{i=1}^{N}\left(w_{0}+w_{l} \lambda_{l}\left(\mathbf{x}_{T+i}\right)+w_{e} \lambda_{e}\left(\mathbf{x}_{T+i}\right)\right) d\left(\mathbf{x}_{T+i-1}, \mathbf{x}_{T+i}\right)
+$$
+
+关于$\omega_0, \omega_l, \omega_e$的选择，采用的是帕累托优化方法(Pareto optimal solutions)：
+
+帕累托最优是指资源分配的一种理想状态。給定固有的一群人和可分配的资源，如果从一种分配状态到另一种状态的变化中，在没有使任何人境况变坏的前提下，使得至少一个人变得更好，这就是帕累托改善。帕累托最優的狀態就是不可能再有更多的帕雷托改善的狀態；换句话说，不可能在不使任何其他人受損的情況下再改善某些人的境況。 
+
+这里通过调整$$w_{l} \in[0,1]$$且$w_{e} = 1 - w_l$来实现。
+
+### 期望最大化探索（EM Exploration)
+
+SLAM问题可以用以下联合概率问题来表示
+$$
+X^{*}, L^{*}=\underset{X, L}{\operatorname{argmax}} \log P(X, L, Z)
+$$
+其中$X$为机器人的位置，$L$为landmarks，$Z$为观测。
+在传统的联合概率之上，该文章引入了虚拟landmarks V，指在探索过程中会出现的可能没被观测过的landmarks。则目标函数可以被改为：
+
+$$
+\begin{aligned}
+X^{*} &=\underset{X}{\operatorname{argmax}} \log P(X, Z) \\
+&=\underset{X}{\operatorname{argmax}} \log \sum_{V} P(X, Z, V)
+\end{aligned}
+$$
+
+在本文中，用了两步法来求解这个问题：
+$$
+\begin{array}{l}
+\text { C-step: } \quad V^{*}=\underset{V}{\operatorname{argmax}} p\left(V \mid X^{\text {old }}, Z\right) \\
+\text { M-step: } \quad X^{\text {new }}=\arg \max _{X} \log P\left(X, V^{*}, Z\right)
+\end{array}
+$$
+这个就是所谓的classification EM algorithms。（这种EM算法的思想我没看，但是这个公式倒是挺好懂。）现在假设$Z$是使得$X, V$似然概率最高的观测，那么，求得$X,V$后，$Z$就唯一确定，$Z$的概率不影响$X,V$的概率，则有
+
+$$
+P(X, V, Z)=\mathcal{N}\left(\left[\begin{array}{l}
+X \\
+V
+\end{array}\right],\left[\begin{array}{ll}
+\Sigma_{X X} & \Sigma_{X V} \\
+\Sigma_{V X} & \Sigma_{V V}
+\end{array}\right]\right)
+$$
+
+这个公式的解可以转化为以下问题：
+
+$$
+\underset{X}{\operatorname{argmax}} \log P\left(X, V^{*}, Z\right)=\underset{X}{\operatorname{argmin}} \log \operatorname{det}(\Sigma)
+$$
+
+为什么？因为上述高斯分布的均值总是$X,V$，即你取任何$X, V$，这个概率分布的值总是一个高斯分布的最大值。而高斯分布的最大值取决于其协方差，协方差的行列式越小，其最大值越大。
+
+对于一个正定的协方差矩阵，其行列式有以下关系：
+$$
+\underset{X}{\operatorname{argmax}} \log P\left(X, V^{*}, Z\right)=\underset{X}{\operatorname{argmin}} \log \operatorname{det}(\Sigma)
+$$
+即一个正定矩阵的行列式应该小于其对角线的两个矩阵的行列式之和。
+
+接下来就是确定这个协方差的上界。
+![](/pics/more_active/12-22-costmap/12--22-cov.png)
+
+这部分由于时间关系我不详述了。
+
+### 工具函数
+
+在根据上述方法找到一系列的candidate path后，还要选出一个最好的路径。这里使用了一个utility函数为
+$$
+\begin{aligned}
+U_{\mathrm{EM}}\left(X_{T: T+N}\right)=&-\log \operatorname{det}\left(\tilde{\Sigma}_{\mathbf{x}_{T+N}}\right)-\sum_{k} \log \operatorname{det}\left(\hat{\Sigma}_{\mathbf{v}_{k}}\right) \\
+&-\alpha d\left(X_{T: T+N}\right)
+\end{aligned}
+$$
+
+即我选择的路径不光本身路程要短，并且还要让landmarks的协方差的行列式降到最低。
+
+## 12-28
+- 标题：Robust Exploration with Multiple Hypothesis Data Association
+- 作者单位：斯蒂文斯理工大学
+- 期刊：IROS 2018
+
+
