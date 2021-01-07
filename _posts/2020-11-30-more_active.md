@@ -399,4 +399,15 @@ $$
 - 作者单位：斯蒂文斯理工大学
 - 期刊：IROS 2018
 
+## 12-31
+- 标题：Uncertainty-Aware Occupancy Map Prediction Using Generative Networks for Robot Navigation
+- 作者单位：约翰霍普金斯大学
+- ICRA 2019
 
+## 1-5
+- 标题：Graph-based Path Planning for Autonomous Robotic Exploration in Subterranean Environments
+- 作者单位：内华达大学
+- IROS 2019
+
+粗略看了下，利用了Local planner 选择当前信息增益最大的路径，
+利用Global planner 使得机器人在探索洞穴时还能够返回。

@@ -10,7 +10,7 @@ key: page-about
 
 # Ming Cao
 
-Master candidate, NRSL group
+Master candidate, [NRSL group](http://nrs-lab.com/)
 
 School of Mechanical Engineering and Automation
 
@@ -20,7 +20,7 @@ Harbin Institute of Technology, Shenzhen, China
 
 -------------------------
 
-I am a student of School of Mechanical Engineering and Automation in Harbin Institute of Technology, Shenzhen and a member of NRSL group, led by associate professor Hao-Yao Chen.
+I am a student of School of Mechanical Engineering and Automation in Harbin Institute of Technology, Shenzhen and a member of NRSL group, led by professor Hao-Yao Chen.
 
 ## Biography
 

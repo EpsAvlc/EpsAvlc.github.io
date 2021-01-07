@@ -39,3 +39,9 @@ tags:
 [曲线篇：深刻理解B 样条曲线（上）](https://zhuanlan.zhihu.com/p/139759835)
 
 [曲线篇：深刻理解B 样条曲线（下）](https://zhuanlan.zhihu.com/p/140921657)
+
+### 卡方分布
+
+卡方分布经常用来检验SLAM问题中的数据关联的正确与否。
+
+[ t分布, 卡方x分布，F分布 ](https://www.cnblogs.com/think-and-do/p/6509239.html)
