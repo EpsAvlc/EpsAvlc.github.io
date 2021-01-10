@@ -431,3 +431,25 @@ $$
 
 粗略看了下，利用了Local planner 选择当前信息增益最大的路径，
 利用Global planner 使得机器人在探索洞穴时还能够返回。
+
+## 1-7
+- 标题：Receding horizon path planning for 3D exploration and surface inspection
+- 作者单位: ETHZ
+- Autonomous Robots 2016
+
+这篇其实我之前读过，但是当时印象不是很深刻。现在重新回顾一下。
+
+### 一些概念
+1. receding horizon = mpc(模型预测控制)
+2. residual volume: 从configuration空间中找不到一个configuration可以将其照到的voxel的集合.
+
+### 信息增益表达式
+$$\operatorname{Gain}\left(n_{k}\right)=\operatorname{Gain}\left(n_{k-1}\right)+\mu\left(\text { Visiblev }\left(\mathcal{M}, \xi_{k}\right)\right) e^{-\lambda c\left(\sigma_{k-1}^{k}\right)}$$
+
+其中$\text { Visiblev }\left(\mathcal{M}, \xi_{k}\right)$表示给定地图M以及机器人位置$\xi$，其可视区域内有多少尚未被看到的voxel。$e^{-\lambda c\left(\sigma_{k-1}^{k}\right)}$是路径损失。
+
+###　算法流程
+
+1. RRT*算法在free space生成候选位置。
+2. 用上述的信息增益表达式，选出信息增益最大的节点。
+3. 选出最大的节点（以及其对应的路径后），只执行第一步，当第一步执行完后，保留当前最佳路径，其他节点丢弃，然后重复１２３步来继续执行下一步。这就类似于MPC的味道在里面了。
