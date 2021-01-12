@@ -453,3 +453,24 @@ $$\operatorname{Gain}\left(n_{k}\right)=\operatorname{Gain}\left(n_{k-1}\right)+
 1. RRT*算法在free space生成候选位置。
 2. 用上述的信息增益表达式，选出信息增益最大的节点。
 3. 选出最大的节点（以及其对应的路径后），只执行第一步，当第一步执行完后，保留当前最佳路径，其他节点丢弃，然后重复１２３步来继续执行下一步。这就类似于MPC的味道在里面了。
+
+## 1-11
+- 标题：Reactive Control and Metric-Topological Planning for Exploration
+- 作者单位: 科罗拉多大学博尔德分校
+- ICRA 2020
+
+一篇结合了现代控制理论和边界探索的文章。这篇文章讲的是机器人在隧道型场景下的主动探索。Paper Reading可以讲一下这一篇。挺有新意。
+
+### Nearness-Based Control
+
+在隧道中肯定希望机器人沿着隧道路径的中心移动以避免碰撞。这篇文章将机器人到360度的距离进行了建模，并且设计了一个反馈器来镇定系统，使得机器人的位置始终在隧道路径的中心。
+
+![](/pics/more_active/1-11%20notations.png)
+
+### Planning
+
+通过一些SLAM方法获得二维占据栅格地图后，对地图进行二值化，并且使用高斯滤波平滑，再通过腐蚀操作细化路径，得到下图所示。
+
+![](/pics/more_active/1-11-topo.png)
+
+然后统计地图中节点度为1的node，这些node要么就是死胡同，要么就是待探索的区域，通过近邻搜索来将这些node连接起来，然后让机器人走到最近的待探索的度为1的node，即完成了自动探索。
