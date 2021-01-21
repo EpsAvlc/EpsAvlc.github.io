@@ -448,7 +448,7 @@ $$\operatorname{Gain}\left(n_{k}\right)=\operatorname{Gain}\left(n_{k-1}\right)+
 
 其中$\text { Visiblev }\left(\mathcal{M}, \xi_{k}\right)$表示给定地图M以及机器人位置$\xi$，其可视区域内有多少尚未被看到的voxel。$e^{-\lambda c\left(\sigma_{k-1}^{k}\right)}$是路径损失。
 
-###　算法流程
+### 算法流程
 
 1. RRT*算法在free space生成候选位置。
 2. 用上述的信息增益表达式，选出信息增益最大的节点。
@@ -474,3 +474,53 @@ $$\operatorname{Gain}\left(n_{k}\right)=\operatorname{Gain}\left(n_{k-1}\right)+
 ![](/pics/more_active/1-11-topo.png)
 
 然后统计地图中节点度为1的node，这些node要么就是死胡同，要么就是待探索的区域，通过近邻搜索来将这些node连接起来，然后让机器人走到最近的待探索的度为1的node，即完成了自动探索。
+
+## 1-15
+- 标题：Efficient Autonomous Exploration Planning of Large-Scale 3-D Environments
+- 作者单位: KTH & 林雪平大学 
+- RAL 2019
+
+### 信息增益表达式
+
+$$
+s(\mathbf{x})=g(\mathbf{x}) \exp (-\lambda c(\mathbf{x}))
+$$
+
+$g(x)$为x处的信息增益，$c(x)$为当前位置到x位置的损失，$lambda$是一个人为的参数。
+
+### 方法论
+
+利用高斯过程来计算一个新的candidate的信息增益，并且用协方差来判断得到的信息增益是否准确，如果不够准确则再采用光线投射的方法获得信息增益。
+
+结合frontier exploration + nbv的方法来实行主动探索。
+
+### 实现
+
+#### Sparse Ray Casting
+
+不还是数格子吗。
+
+#### Collision Checking
+
+看以起点与终点为两端的圆柱体里是否有占据的voxel。
+
+#### Gaussian Process Interpolation
+
+1. 零均值假设
+2. RBF-kernel $$k\left(\mathbf{x}_{i}, \mathbf{x}_{j}\right)=\exp \left(-\frac{1}{2}\left\|\mathbf{x}_{i}-\mathbf{x}_{j}\right\|^{2}\right)$$
+
+## 1-15
+- 标题：Guiding Autonomous Exploration With Signal Temporal Logic
+- 作者单位: KTH
+- RAL 2019
+
+和上一篇文章有相同的作者。主要的贡献是，将人为指定的约束加入到轨迹规划中，使得路径更加好看。
+
+![](/pics/more_active/1-15-trajectory.png)
+
+具体公式为：
+$$
+c\left(\sigma_{k}^{k+1}, \psi\right)=C\left(\sigma_{k}^{k+1}\right) \max \left(e^{-\beta \rho\left(\psi, \sigma_{k}^{k+1}\right)}, 1\right)
+$$
+
+这个我可以用到最后的nbv评估当中去。
