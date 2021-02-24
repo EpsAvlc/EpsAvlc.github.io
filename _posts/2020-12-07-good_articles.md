@@ -53,3 +53,7 @@ tags:
 其主要思想为，给定一个参考未来N个时刻的预计输出，MPC有一个predicting horizon，使得未来的N个时刻都尽量与参考输出接近，同时又要满足系统的各个限制。优化出来控制变量后，仅将N个时刻中的离当前时刻最近的控制量赋值给被控机器人，随后等该控制量执行之后，再按照上述的策略继续算控制量。
 
 [bilibili 视频](https://www.bilibili.com/video/av24625694?p=2%29)
+
+### 软件开发相关：什么是CI/CD
+
+[CI/CD是什么？如何理解持续集成、持续交付和持续部署](https://www.redhat.com/zh/topics/devops/what-is-ci-cd)
