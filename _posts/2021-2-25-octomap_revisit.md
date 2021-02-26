@@ -1,5 +1,5 @@
 ---
-title: "再谈octomap——关于它的一切"
+title: "再谈octomap——一些细节"
 tags: SLAM
 ---
 
@@ -41,9 +41,9 @@ tags: SLAM
 
 八叉树地图的最底层的栅格总数是固定的，如果八叉树的最大深度为16，则最底层最多会有65536个voxel。然而，八叉树并非是初始化时，便给最底层以及其它层的voxel分配好了内存空间。只有当某个区域有点云存在时，八叉树才会从最上层开始一步步分裂，直到这些点被分裂出来的最底层的voxel所包围。详见 OccupancyOcTreeBase.hxx 文件里的 updateNode() 以及 updateNodeRecurs()函数。
 
-### pruneNode
+### prune　剪枝
 
-
+八叉树是存在剪枝的。是自底向上的剪枝，从最底层　16层开始，判断上一层的节点的八个children是否都存在，并且logOdd的值是一样的，如果一样的话，则这八个children都会被剪枝，只保留parent node。详见prune()/pruneRecurs()/pruneNode()三个函数。
 
 ### 迭代器
 
@@ -54,3 +54,7 @@ octree里有两个迭代器，octree->begin(uint depth)与octree->begin_leafs()�
 OcTreeKey　是每一个Node的类似索引的数据类型，由三个unsigned int构成，分别表示了在三个维度方向上的索引。
 
 每个Node都有唯一的OcTreeKey，但是一个OcTreeKey可以对应多个深度上不同的voxel,只要这些voxel的中心点一致。
+
+因为一个OcTreeKey可以对应多个深度上的不同的voxel，因此在search的时候，需要指定search的深度。Search算法是一个自顶而下的算法。先从root节点开始搜索，向着底层搜索，并且用getNodeChild()函数来计算所需要的查找的Node在当前Node的哪个Child中，然后继续沿着这个child搜索。
+
+从search的原理中可以看出，search是单向的，可以从某个OcTreeKey或者某个坐标搜索到某个node，但是给某个node的指针，没有直接的方法能够获得这个node的深度、三维坐标以及OcTreeKey。
