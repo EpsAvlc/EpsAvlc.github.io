@@ -10,7 +10,7 @@ tags: SLAM
 <!--more-->
 
 ## 相关链接
-- [我的上一篇octomap的文章](2020/11/05/Octomap.html)
+
 - 论文：Hornung, Armin, et al. “OctoMap: An efficient probabilistic 3D mapping framework based on octrees.” Autonomous robots 34.3 (2013): 189-206.
 - [octomap github](https://github.com/OctoMap/octomap)
 
