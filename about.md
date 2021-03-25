@@ -50,7 +50,7 @@ I received my B.Sc. degree in Electrical Engineering in School of Mechanical and
 <p align="left">
 <h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Intelligent Unmanned Logistics Vehicle in Campus</h5>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2018.9 - 2019.10 <a href="https://www.bilibili.com/video/BV1Sb411H751/">[Video]</a><br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Full stack of unmmanned vehicle in campus. <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Localization, mapping and navigation of unmmanned vehicle in campus. <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Cooperated with seniors. <br>
 </p>
 ----
@@ -59,7 +59,7 @@ I received my B.Sc. degree in Electrical Engineering in School of Mechanical and
 <h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  ROBOCON 2017 </h5>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 2016.9 - 2017.6 <a href="https://www.bilibili.com/video/BV1cW41137a9">[Video]</a><br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Leader of vision group in the robot team of UESTC. <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Design algorithm for tracking frisbees and predict its trajectory. <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Design algorithms for tracking frisbees and predict its trajectory. <br>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Second place in China. <br>
 </p>
 
@@ -71,7 +71,7 @@ I received my B.Sc. degree in Electrical Engineering in School of Mechanical and
 <p align="left">
 <h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3D Dense Rangefinder Sensor With A Low Cost Scanning Mechanism</h5>
 <b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Ming Cao</b>, Pengpeng Su, Haoyao Chen*, Shiyu Tang, and Yunhui Liu <br> 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IEEE Transactions on Instrumentation & Measurement, 2020 <a href="https://ieeexplore.ieee.org/abstract/document/9166528/">[pdf]</a> </p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IEEE Transactions on Instrumentation & Measurement（TIM）, 2020 <a href="https://ieeexplore.ieee.org/abstract/document/9166528/">[pdf]</a> </p>
 
 ----------
 
