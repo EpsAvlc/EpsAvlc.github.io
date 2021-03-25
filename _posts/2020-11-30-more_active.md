@@ -1,6 +1,6 @@
 ---
 title: "更多关于主动重建的文章"
-tags: 
+tags: active_slam
 ---
 ## 背景
 
