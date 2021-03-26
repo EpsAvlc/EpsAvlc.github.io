@@ -71,7 +71,7 @@ I received my B.Sc. degree in Electrical Engineering in School of Mechanical and
 <p align="left">
 <h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Pole-like Objects Mapping and Long-Term Robot Localization in Dynamic Urban Scenarios</h5>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Zhihao Wang, Silin Li, <b>Ming Cao</b>, Haoyao Chen and Yunhui Liu <br> 
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;arXiv, 2021 <a href="https://arxiv.org/abs/2103.13224">[pdf]</a> </p>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;arXiv, 2021 <a href="https://arxiv.org/abs/2103.13224">[pdf]</a> <a href="https://github.com/HITSZ-NRSL/long-term-localization">[code]</a></p>
 
 ---
 
