@@ -67,6 +67,14 @@ I received my B.Sc. degree in Electrical Engineering in School of Mechanical and
 
 ## Publication
 
+<img  src="./pics/about/pole-like.png" width = "250" align='left' padding='100'/>
+<p align="left">
+<h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Pole-like Objects Mapping and Long-Term Robot Localization in Dynamic Urban Scenarios</h5>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Zhihao Wang, Silin Li, <b>Ming Cao</b>, Haoyao Chen and Yunhui Liu <br> 
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;arXiv, 2021 <a href="https://arxiv.org/abs/2103.13224">[pdf]</a> </p>
+
+---
+
 <img  src="./pics/about/structureSW.png" width = "250" align='left' padding='100'/>
 <p align="left">
 <h5>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 3D Dense Rangefinder Sensor With A Low Cost Scanning Mechanism</h5>
