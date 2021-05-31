@@ -18,7 +18,7 @@ tags: SLAM
 
 ### 类间关系
 
-![](../pics/octomap_revisit/uml_overview.png)
+![](/pics/octomap_revisit/uml_overview.png)
 
 - 空心箭头：表示继承关系。
 - 实心棱形：表示模板参数

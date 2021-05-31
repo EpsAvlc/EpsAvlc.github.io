@@ -20,7 +20,7 @@ tags: active_slam
 
 $N^3$ tree的数据结构如下图所示：
 
-![](../pics/map_representation/n3.png)
+![](/pics/map_representation/n3.png)
 
 其思想为：认为空间中大部分区域为free的栅格，因此free的栅格就不用细分。而那些包含surface的栅格可以细分为Level1 与Level2的栅格。Level2的栅格为叶子栅格，保存了tsdf距离。
 
@@ -37,7 +37,7 @@ Voxel hashing主要是解决这样一个问题：当在大规模建图的时候�
 
 Voxel hashing的数据结构为：
 
-![](../pics/map_representation/voxel_hashing.png)
+![](/pics/map_representation/voxel_hashing.png)
 
 具体而言，将不同的坐标的voxel，用一个hash函数映射到不同的bucket中去。该论文使用了许多技巧来解决发生哈希碰撞时如何提高效率，以及如何根据voxel hashing的地图形式来解决TSDF更新时的问题。
 
@@ -49,7 +49,7 @@ Voxel hashing的数据结构为：
 - [SuperEight repo](https://github.com/emanuelev/supereight)
 
 SuperEiget的数据结构为：
-![](../pics/map_representation/supereight.png)
+![](/pics/map_representation/supereight.png)
 
 有点类似于Voxel Hashing，不同于八叉树的是，每个Leaf node里有8x8x8个栅格。这些栅格通过莫顿编码的形式来实现快速查找与分配内存。
 
