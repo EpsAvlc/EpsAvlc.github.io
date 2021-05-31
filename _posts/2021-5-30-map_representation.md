@@ -39,4 +39,9 @@ Voxel hashing的数据结构为：
 ## SuperEight
 > 论文：Vespa, Emanuele, et al. "Efficient octree-based volumetric SLAM supporting signed-distance and occupancy mapping." IEEE Robotics and Automation Letters 3.2 (2018): 1144-1151.
 
-TODO: 5.31
+- [SuperEight repo](https://github.com/emanuelev/supereight)
+
+SuperEiget的数据结构为：
+![](../pics/map_representation/supereight.png)
+
+有点类似于Voxel Hashing，不同于八叉树的是，每个Leaf node里有8x8x8个栅格。这些栅格通过莫顿编码的形式来实现快速查找与分配内存。相较于八叉树地图，他的优势在于能够更快更方便地查找到某个Voxel的邻节点。
