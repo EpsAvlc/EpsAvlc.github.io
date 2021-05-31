@@ -20,10 +20,21 @@ tags: active_slam
 
 TODO: 5.31
 
-## flat hash-tables
+## flat hash-tables(Voxel Hashing)
 > 论文：M. Nießner, M. Zollh¨ofer, S. Izadi, and M. Stamminger, “Real-time 3D reconstruction at scale using voxel hashing,” ACMTrans. Graph., vol. 32, 2013, Art. no. 169.
 
-TODO: 6.1
+- [Voxel Hashing Repo](https://github.com/niessner/VoxelHashing)
+- [基于Voxel Hashing的InfiniTAM Repo](https://github.com/victorprad/InfiniTAM)
+
+Voxel hashing主要是解决这样一个问题：当在大规模建图的时候，如果事先就给所有的voxel分配内存，则会导致内存爆炸。因此，Voxel hashing选择只保存相机观测到的voxel，将其存入Hash表中。
+
+Voxel hashing的数据结构为：
+
+![](../pics/map_representation/voxel_hashing.png)
+
+具体而言，将不同的坐标的voxel，用一个hash函数映射到不同的bucket中去。该论文使用了许多技巧来解决发生哈希碰撞时如何提高效率，以及如何根据voxel hashing的地图形式来解决TSDF更新时的问题。
+
+其最终还是类似于Kinect-fusion，TSDF更新的方式与raycast得到重建表面的方式都类似。
 
 ## SuperEight
 > 论文：Vespa, Emanuele, et al. "Efficient octree-based volumetric SLAM supporting signed-distance and occupancy mapping." IEEE Robotics and Automation Letters 3.2 (2018): 1144-1151.
