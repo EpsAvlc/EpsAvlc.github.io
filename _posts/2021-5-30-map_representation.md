@@ -18,9 +18,16 @@ tags: active_slam
 ## $N^3$ tree
 > 论文：J. Chen, D. Bautembach, and S. Izadi, “Scalable real-time volumetric surface reconstruction,” ACM Trans. Graph., vol. 32, no. 4, pp. 113:1– 113:16, Jul. 2013.
 
-TODO: 5.31
+$N^3$ tree的数据结构如下图所示：
+
+![](../pics/map_representation/n3.png)
+
+其思想为：认为空间中大部分区域为free的栅格，因此free的栅格就不用细分。而那些包含surface的栅格可以细分为Level1 与Level2的栅格。Level2的栅格为叶子栅格，保存了tsdf距离。
+
+N3 tree不用octree的原因在于，他认为octree不容易在GPU上实现并行化。
 
 ## flat hash-tables(Voxel Hashing)
+
 > 论文：M. Nießner, M. Zollh¨ofer, S. Izadi, and M. Stamminger, “Real-time 3D reconstruction at scale using voxel hashing,” ACMTrans. Graph., vol. 32, 2013, Art. no. 169.
 
 - [Voxel Hashing Repo](https://github.com/niessner/VoxelHashing)
@@ -44,4 +51,11 @@ Voxel hashing的数据结构为：
 SuperEiget的数据结构为：
 ![](../pics/map_representation/supereight.png)
 
-有点类似于Voxel Hashing，不同于八叉树的是，每个Leaf node里有8x8x8个栅格。这些栅格通过莫顿编码的形式来实现快速查找与分配内存。相较于八叉树地图，他的优势在于能够更快更方便地查找到某个Voxel的邻节点。
+有点类似于Voxel Hashing，不同于八叉树的是，每个Leaf node里有8x8x8个栅格。这些栅格通过莫顿编码的形式来实现快速查找与分配内存。
+
+相较于八叉树地图，他的优势在于能够更快更方便地查找到某个Voxel的邻节点。
+
+相较于使用TSDF表示表面的地图表征，他的优势在于，能够准确区分以下两种voxel:
+- free voxel
+- unknown voxel
+换言之，TSDF表征的地图里，没有区分free与unknown栅格的概念。
