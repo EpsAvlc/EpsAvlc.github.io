@@ -71,8 +71,9 @@ $$
 \implies \frac{\partial ^{C_k}{\delta\theta}_M}{\partial ^{M}{\delta\theta}_G} &= -\ ^{C_k}_{M}R
 \end{aligned}
 $$ 
+这里推得的公式与论文中不太一样。
 
-此外
+如果要推得和论文中一样的公式，应该为如下推导：
 $$
 \begin{aligned}
 \exp([^{C_k}{\delta\theta}_M]_\times)^{C_{k}}_M{R}&= ^C_IR\ ^{I_{k}}_G{R} \exp ( [^{M}{\delta\theta}_G]_\times)^{G}_{M}{R} \\
