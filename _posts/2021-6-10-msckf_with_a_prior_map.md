@@ -51,36 +51,73 @@ $$
 \tilde{x}_{k} = [^{C_k}{\delta\theta}_M, ^M {\delta p}_{C_{k}}]
 $$ 
 
-因为
+### 修正
+
+公式8中的 $$^{C}_{M}R$$ 疑似写错，应该为 $$^{G}_{M}R$$ 。
+
+### 公式(11)
+
 $$
 \begin{aligned}
-\exp([^{C_k}{\delta\theta}_M]_\times)^{C_{k}}_M{R}&= ^C_IR\exp ( [^{I_k}{\delta\theta}_G]_\times)\ ^{I_{k}}_G{R} ^{G}_{M}{R} \\
-\implies \exp([^{C_k}{\delta\theta}_M]_\times) &=  ^C_IR\exp ( [^{I_k}{\delta\theta}_G]_\times)\ ^I_CR\\
-\implies \exp([^{C_k}{\delta\theta}_M]_\times) &= \exp ( [^C_IR^{I_k}{\delta\theta}_G]_\times) \\
+\exp(-[^{C_k}{\delta\theta}_M]_\times)^{C_{k}}_M{R}&= ^C_IR\exp (- [^{I_k}{\delta\theta}_G]_\times)\ ^{I_{k}}_G{R} ^{G}_{M}{R} \\
+\implies \exp(-[^{C_k}{\delta\theta}_M]_\times) &=  ^C_IR\exp (- [^{I_k}{\delta\theta}_G]_\times)\ ^I_CR\\
+\implies \exp(-[^{C_k}{\delta\theta}_M]_\times) &= \exp (-[^C_IR^{I_k}{\delta\theta}_G]_\times) \\
 \implies ^{C_k}{\delta\theta}_M &= ^C_IR^{I_k}{\delta\theta}_G \\
 \implies \frac{\partial ^{C_k}{\delta\theta}_M}{\partial ^{I_k}{\delta\theta}_G} &= \ ^{C}_{I}R
-\end{aligned}
+\end{aligned} 
 $$ 
-以及
+
+### 公式(12)
 $$
 \begin{aligned}
-\exp([^{C_k}{\delta\theta}_M]_\times)^{C_{k}}_M{R}&= ^C_IR\ ^{I_{k}}_G{R} (\exp ( [^{M}{\delta\theta}_G]_\times)^{M}_{G}{R} )^\top\\
-\implies \exp([^{C_k}{\delta\theta}_M]_\times)^{C_{k}}_M{R} &=   ^C_IR\ ^{I_{k}}_G{R}^G_MR \exp ( -[^{M}{\delta\theta}_G]_\times)\\
-\implies \exp([^{C_k}{\delta\theta}_M]_\times) &= ^{C_{k}}_MR \exp ( -[^{M}{\delta\theta}_G]_\times) ^{M}_{C_{k}}R \\
+\exp(-[^{C_k}{\delta\theta}_M]_\times)^{C_{k}}_M{R}&= ^C_IR\ ^{I_{k}}_G{R} (-\exp ( [^{M}{\delta\theta}_G]_\times)^{M}_{G}{R} )^\top\\
+\implies \exp(-[^{C_k}{\delta\theta}_M]_\times)^{C_{k}}_M{R} &=   ^C_IR\ ^{I_{k}}_G{R}^G_MR \exp ( [^{M}{\delta\theta}_G]_\times)\\
+\implies \exp(-[^{C_k}{\delta\theta}_M]_\times) &= ^{C_{k}}_MR \exp ( [^{M}{\delta\theta}_G]_\times) ^{M}_{C_{k}}R \\
 \implies ^{C_k}{\delta\theta}_M  &= - ^{C_{k}}_MR ^{M}{\delta\theta}_G\\
 \implies \frac{\partial ^{C_k}{\delta\theta}_M}{\partial ^{M}{\delta\theta}_G} &= -\ ^{C_k}_{M}R
 \end{aligned}
 $$ 
+
+
 这里推得的公式与论文中不太一样。
 
 如果要推得和论文中一样的公式，应该为如下推导：
+
 $$
 \begin{aligned}
-\exp([^{C_k}{\delta\theta}_M]_\times)^{C_{k}}_M{R}&= ^C_IR\ ^{I_{k}}_G{R} \exp ( [^{M}{\delta\theta}_G]_\times)^{G}_{M}{R} \\
-\implies \exp([^{C_k}{\delta\theta}_M]_\times) &=\ ^{C_{k}}_{G}R \exp ( [^{M}{\delta\theta}_G]_\times) ^{G}_{C_{k}}R\\
-\implies \exp([^{C_k}{\delta\theta}_M]_\times) &= \exp ( [\ ^{C_{k}}_{G}R^{M}{\delta\theta}_G]_\times) \\
+\exp(-[^{C_k}{\delta\theta}_M]_\times)^{C_{k}}_M{R}&= ^C_IR\ ^{I_{k}}_G{R} \exp (-[^{M}{\delta\theta}_G]_\times)^{G}_{M}{R} \\
+\implies \exp(-[^{C_k}{\delta\theta}_M]_\times) &=\ ^{C_{k}}_{G}R \exp (-[^{M}{\delta\theta}_G]_\times) ^{G}_{C_{k}}R\\
+\implies \exp(-[^{C_k}{\delta\theta}_M]_\times) &= \exp (-[\ ^{C_{k}}_{G}R^{M}{\delta\theta}_G]_\times) \\
 \implies ^{C_k}{\delta\theta}_M &= ^{C_{k}}_{G}R^{M}{\delta\theta}_G \\
 \implies \frac{\partial ^{C_k}{\delta\theta}_M}{\partial ^{M}{\delta\theta}_G} &= \ ^{C_k}_{G}R
-
 \end{aligned}
 $$ 
+
+### 公式(13)
+$$
+\begin{aligned}
+^{M}p_{C_{k}} + ^M\delta p_{c_{k}} &=\ ^{G}_{M}R ^\top \ ^{G}p_{I_{k}} -\ ^{G}_{M}R ^\top\ ^Gp_M - \ ^{G}_{M}R ^\top \ (\exp (-[^I_{k}\delta \theta_{G}]_\times) ^{I_{k}}_{G}R) ^\top \ ^{G}_{I}R ^\top\ ^Cp_{I} \\
+&\simeq \ ^{G}_{M}R ^\top \ ^{G}p_{I_{k}} -\ ^{G}_{M}R ^\top \ ^Gp_M - \ ^{G}_{M}R ^\top \ (I -[^I_{k}\delta \theta_{G}]_\times) ^{I_{k}}_{G}R) ^\top \ ^{C}_{I}R ^\top\ ^Cp_{I} \\
+&= \ ^{G}_{M}R ^\top \ ^{G}p_{I_{k}} -\ ^{G}_{M}R ^\top \ ^Gp_M - \ ^{G}_{M}R ^\top (^{I_{k}}_{G}R ^\top (I + [^I_{k}\delta \theta_{G}]_\times) ) \ ^{C}_{I}R ^\top\ ^Cp_{I}\\
+\implies ^M\delta p_{c_{k}} &= - \ ^{G}_{M}R ^\top\ ^{I_{k}}_{G}R [^I_{k}\delta \theta_{G}]_\times\ ^{C}_{I}R ^\top\ ^Cp_{I}\\
+\implies ^M\delta p_{c_{k}} &= \ ^{G}_{M}R ^\top\ ^{I_{k}}_{G}R [ ^{C}_{I}R ^\top\ ^Cp_{I}]_\times\ ^I_{k}\delta \theta_{G}\\
+\implies \frac{\partial \ ^M\delta p_{c_{k}}}{\partial ^I_{k}\delta \theta_{G}} &= \ ^{G}_{M}R ^\top\ ^{I_{k}}_{G}R [ ^{C}_{I}R ^\top\ ^Cp_{I}]_\times\\
+\end{aligned}
+$$ 
+
+### 公式(14)
+
+$$
+
+\begin{aligned}
+^{M}p_{C_{k}} + ^M\delta p_{c_{k}} &= (\exp(-[^{G}{\delta\theta}_M]_\times)^{G}_{M}R)^\top(^Gp_{I_{k}} - ^Gp_{M}-^{I_k}_{G}R ^\top -\ ^C_IR ^\top) \\
+& \simeq ((I - [^{G}{\delta\theta}_M]_\times)^{G}_{M}R)^\top(^Gp_{I_{k}} - ^Gp_{M}-^{I_k}_{G}R ^\top -\ ^C_IR ^\top) \\
+\implies ^M\delta p_{c_{k}}  &= ^{G}_{M}R ^\top [^{G}{\delta\theta}_M]_\times(^Gp_{I_{k}} - ^Gp_{M}-^{I_k}_{G}R ^\top -\ ^C_IR ^\top)\\
+&= ^{G}_{M}R [^Gp_{I_{k}} - ^Gp_{M}-^{I_k}_{G}R ^\top -\ ^C_IR ^\top]_\times\ ^{G}{\delta\theta}_M\\
+\implies \frac{\partial ^M\delta p_{c_{k}}}{\partial \ ^{G}{\delta\theta}_M} &= ^{G}_{M}R [^Gp_{I_{k}} - ^Gp_{M}-^{I_k}_{G}R ^\top -\ ^C_IR ^\top]_\times \\
+\end{aligned}
+$$ 
+
+### 公式(15)、(16)
+
+很简单，就不写了。
